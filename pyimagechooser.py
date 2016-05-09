@@ -1,17 +1,57 @@
 #!/usr/bin/env python3
 #coding=utf-8
 
-import sys
+import sys, glob, os
 
 from PySide.QtCore import *
 from PySide.QtGui import *
 
 import MainWindow
 
-class VentanaPrincipal (QMainWindow, MainWindow.Ui_MainWindow):
+img_extensions=["*.jpg",  "*.gif", "*.png", "*.bmp", "*.jpeg"]
+
+class ImagesFolder(object):
+    def __init__(self, img_folder):
+        self.path=img_folder
+        self.files=[]
+        for ext in img_extensions:
+            self.files+=glob.glob(img_folder+ os.sep + ext)
+        self.files.sort()
+        #print (self.files)
+        self.current_img=0
+        
+    def image_list_empty(self):
+        if len(self.files)==0:
+            print("Empty folder")
+            return True
+        print ("Folder with img")
+        return False
+    
+    def get_image_list(self):
+        file_list=[]
+        for f in self.files:
+            file_list.append ( os.path.basename(f))
+        return file_list
+    
+    def current_image_index(self):
+        return self.current_img
+    
+    def current_image_filename(self):
+        return self.files [ self.current_img ]
+    
+    def folder_completely_processed(self):
+        if self.current_img==len(self.files):
+            return True
+        return False
+    
+    def goto_next_image(self):
+        if self.current_img < len ( self.files ):
+            self.current_img+=1
+        
+class AppWindow (QMainWindow, MainWindow.Ui_MainWindow):
     def __init__(self, parent=None):
         self.STATUS_BAR_TIME=4000
-        super(VentanaPrincipal, self).__init__(parent)
+        super(AppWindow, self).__init__(parent)
         self.setupUi(self)
         
         self.btnSelectRootFolder.clicked.connect( self.onSelectRootFolder )
@@ -24,6 +64,8 @@ class VentanaPrincipal (QMainWindow, MainWindow.Ui_MainWindow):
         self.rootFolder=""
         self.folder1=""
         self.folder2=""
+        self.img_folder=None
+        self.image_to_process=None
     
     def onSelectRootFolder(self):
         folder=QFileDialog.getExistingDirectory()
@@ -31,7 +73,15 @@ class VentanaPrincipal (QMainWindow, MainWindow.Ui_MainWindow):
         self.statusBar.showMessage(msg, self.STATUS_BAR_TIME)
         self.rootFolder=folder
         self.lblRootFolder.setText(folder)
-        
+        self.img_folder=ImagesFolder(folder)
+        #Fill the QListWidget with the images in the selected folder
+        if not self.img_folder.image_list_empty():
+            for f in self.img_folder.get_image_list():
+                self.lvImages.addItem(f)
+            self.lvImages.setCurrentRow( 0 )
+            self.image_to_process=QPixmap( self.img_folder.current_image_filename() )
+            self.lblImagePreview.setPixmap( self.image_to_process )
+            
         
     def onSelectFolder1(self):
         folder=QFileDialog.getExistingDirectory()
@@ -58,7 +108,7 @@ class VentanaPrincipal (QMainWindow, MainWindow.Ui_MainWindow):
         
 if __name__ == '__main__':
     app=QApplication (sys.argv)
-    v=VentanaPrincipal()
-    v.show()
+    w=AppWindow()
+    w.show()
     app.exec_()
     sys.exit()

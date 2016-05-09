@@ -18,7 +18,10 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0">
+        <property name="spacing">
+         <number>0</number>
+        </property>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
@@ -94,7 +97,7 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QListView" name="lvImages">
+           <widget class="QListWidget" name="lvImages">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -103,14 +106,14 @@
           <item>
            <widget class="QPushButton" name="btnMoveToFolder1">
             <property name="text">
-             <string>Move to folder 1 (or press 1)</string>
+             <string>Send to folder 1 (or press 1)</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btnMoveToFolder2">
             <property name="text">
-             <string>Move to folder 2 (or press 2)</string>
+             <string>Send to folder 2 (or press 2)</string>
             </property>
            </widget>
           </item>
@@ -131,6 +134,9 @@
         </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
         </property>
        </widget>
       </item>

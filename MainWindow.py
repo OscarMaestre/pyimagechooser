@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Mon May  9 17:00:44 2016
+# Created: Mon May  9 21:15:41 2016
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -20,6 +20,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.verticalLayout_4 = QtGui.QVBoxLayout()
+        self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -68,7 +69,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addLayout(self.horizontalLayout)
         self.verticalLayout_2 = QtGui.QVBoxLayout()
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.lvImages = QtGui.QListView(self.centralWidget)
+        self.lvImages = QtGui.QListWidget(self.centralWidget)
         self.lvImages.setEnabled(False)
         self.lvImages.setObjectName("lvImages")
         self.verticalLayout_2.addWidget(self.lvImages)
@@ -88,6 +89,7 @@ class Ui_MainWindow(object):
         self.lblImagePreview.setSizePolicy(sizePolicy)
         self.lblImagePreview.setAutoFillBackground(False)
         self.lblImagePreview.setText("")
+        self.lblImagePreview.setScaledContents(True)
         self.lblImagePreview.setObjectName("lblImagePreview")
         self.horizontalLayout_2.addWidget(self.lblImagePreview)
         self.verticalLayout_5.addLayout(self.horizontalLayout_2)
@@ -104,6 +106,6 @@ class Ui_MainWindow(object):
         self.btnSelectRootFolder.setText(QtGui.QApplication.translate("MainWindow", "Select images folder", None, QtGui.QApplication.UnicodeUTF8))
         self.btnSelectFolder1.setText(QtGui.QApplication.translate("MainWindow", "Select folder 1", None, QtGui.QApplication.UnicodeUTF8))
         self.btnSelectFolder2.setText(QtGui.QApplication.translate("MainWindow", "Select folder 2", None, QtGui.QApplication.UnicodeUTF8))
-        self.btnMoveToFolder1.setText(QtGui.QApplication.translate("MainWindow", "Move to folder 1 (or press 1)", None, QtGui.QApplication.UnicodeUTF8))
-        self.btnMoveToFolder2.setText(QtGui.QApplication.translate("MainWindow", "Move to folder 2 (or press 2)", None, QtGui.QApplication.UnicodeUTF8))
+        self.btnMoveToFolder1.setText(QtGui.QApplication.translate("MainWindow", "Send to folder 1 (or press 1)", None, QtGui.QApplication.UnicodeUTF8))
+        self.btnMoveToFolder2.setText(QtGui.QApplication.translate("MainWindow", "Send to folder 2 (or press 2)", None, QtGui.QApplication.UnicodeUTF8))
 
